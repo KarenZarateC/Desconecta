@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-24",
+  "image_tool": "OpenAI image generation integrated in Codex",
+  "model_version": "Not exposed by the tool",
+  "prompt": "Use case: stylized-concept. Asset type: illustrated educational poster used inside a Unity 3D children's home sustainability game named Desconecta. Create a square, beautifully art-directed, soft low-poly editorial illustration of a welcoming miniature house cutaway with four rooms: a warm living room, a tidy kitchen, a bathroom, and a bedroom. Include a closed water faucet, a switched-off desk lamp, a dark television, and a potted plant, all visually clear. Friendly environmental education for ages 8–12. Warm cream background, deep navy outlines, muted forest green, sky blue, and warm ochre accents. Simple geometric forms, gentle daylight, subtle paper texture, large clean silhouettes. No people. No gas flames. No text, no letters, no logo, no watermark. Compose as a finished flat illustration with ample cream breathing room, suitable as an in-world wall poster and a main menu illustration. Not a UI mockup.",
+  "result": "Assets/Art/StageThree/HomeIllustration.png",
+  "postprocessing": [
+    "Unity Sprite Single import",
+    "Maximum texture size 1024",
+    "Unity texture compression",
+    "Preserve-aspect UI scaling",
+    "World-poster material and placement"
+  ],
+  "manual_pixel_painting": false,
+  "performed_by": "Codex assistant via tools; not attributed to a student",
+  "code_assistance": "Codex (GPT-6 family; exact revision unavailable)",
+  "audio": "Deterministic Python synthesis; no sampled recordings"
+}
