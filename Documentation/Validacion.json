@@ -1,0 +1,186 @@
+{
+  "date": "2026-10-24",
+  "unity": "6000.3.17f1",
+  "scene": "Assets/Level/Scenes/Desconecta_Stage3.unity",
+  "edit_mode_tests": {
+    "mode": "EditMode",
+    "summary": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 0.1080092,
+      "resultState": "Passed"
+    },
+    "results": [
+      {
+        "name": "InvalidIdCannotAdvanceProgress",
+        "fullName": "MissionProgressTests.InvalidIdCannotAdvanceProgress",
+        "state": "Passed",
+        "durationSeconds": 0.0285708,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "PausedAndUnlimitedModesPreserveRemainingTime",
+        "fullName": "MissionProgressTests.PausedAndUnlimitedModesPreserveRemainingTime",
+        "state": "Passed",
+        "durationSeconds": 0.0023944,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "PenaltiesDoNotMakeScoreNegative",
+        "fullName": "MissionProgressTests.PenaltiesDoNotMakeScoreNegative",
+        "state": "Passed",
+        "durationSeconds": 0.0006343,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "ResolvingSameSituationDoesNotAwardTwice",
+        "fullName": "MissionProgressTests.ResolvingSameSituationDoesNotAwardTwice",
+        "state": "Passed",
+        "durationSeconds": 0.0008266,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "SeventhUniqueResolutionWinsAndLocksScore",
+        "fullName": "MissionProgressTests.SeventhUniqueResolutionWinsAndLocksScore",
+        "state": "Passed",
+        "durationSeconds": 0.0009872,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      },
+      {
+        "name": "TimerExpiresWithoutBecomingNegative",
+        "fullName": "MissionProgressTests.TimerExpiresWithoutBecomingNegative",
+        "state": "Passed",
+        "durationSeconds": 0.0007124,
+        "message": null,
+        "stackTrace": null,
+        "output": ""
+      }
+    ]
+  },
+  "play_mode_integration": {
+    "checks": [
+      {
+        "name": "Seven distinct situations",
+        "passed": true
+      },
+      {
+        "name": "Every target has descriptive audio and both options",
+        "passed": true
+      },
+      {
+        "name": "Background and feedback audio assigned",
+        "passed": true
+      },
+      {
+        "name": "Wrong decision leaves the situation unresolved",
+        "passed": true
+      },
+      {
+        "name": "Correct decision resolves the target",
+        "passed": true
+      },
+      {
+        "name": "Resolved target cannot be scored again",
+        "passed": true
+      },
+      {
+        "name": "Seven successes reach results with 700 points",
+        "passed": true
+      },
+      {
+        "name": "Resolved objects stop wasting resources",
+        "passed": true
+      },
+      {
+        "name": "Restart clears score and restores all targets",
+        "passed": true
+      },
+      {
+        "name": "Pause stops the clock",
+        "passed": true
+      }
+    ],
+    "reachability": [
+      {
+        "id": "kitchen_tap",
+        "accessible": true,
+        "viewpoint": "(7.50, 1.65, 13.00)"
+      },
+      {
+        "id": "bathroom_tap",
+        "accessible": true,
+        "viewpoint": "(-15.50, 1.65, 13.50)"
+      },
+      {
+        "id": "living_light",
+        "accessible": true,
+        "viewpoint": "(6.50, 1.65, -3.00)"
+      },
+      {
+        "id": "television",
+        "accessible": true,
+        "viewpoint": "(11.50, 1.65, -14.50)"
+      },
+      {
+        "id": "charger",
+        "accessible": true,
+        "viewpoint": "(-11.00, 1.65, -10.50)"
+      },
+      {
+        "id": "bedroom_lamp",
+        "accessible": true,
+        "viewpoint": "(-16.00, 1.65, -11.50)"
+      },
+      {
+        "id": "stove",
+        "accessible": true,
+        "viewpoint": "(1.50, 1.65, 14.00)"
+      }
+    ]
+  },
+  "text_overflows_in_checked_screens": [],
+  "pre_build_console_errors_and_warnings": [],
+  "windows_build": {
+    "platform": "Windows x64",
+    "backend": "Mono",
+    "result": "succeeded",
+    "duration_seconds": 247.4558099,
+    "total_size_mb": 103.47,
+    "errors": 0,
+    "warnings": 4,
+    "warning_details": "MCP WebSocket keep-alive disconnects while Unity was busy building; reconnection succeeded. No compilation errors.",
+    "standalone_launch": "Verified visible main menu in Desconecta.exe through Windows UI automation."
+  },
+  "manual_ui_checks": [
+    "Mouse starts a session",
+    "Enter activates a selected decision button",
+    "Escape exits a decision and opens pause",
+    "Tab moves visible keyboard focus",
+    "Standalone player displays home, gameplay and pause",
+    "Standalone Enter toggles large text"
+  ],
+  "limitations": [
+    "No human usability study or critique session",
+    "No full physical-keyboard playthrough of all seven situations",
+    "No screen-reader, gamepad or full key remapping support",
+    "Team identities and individual contributions require confirmation",
+    "Institutional Turnitin review and campus submission not performed"
+  ],
+  "excluded_by_user": [
+    "Critique session",
+    "Video recording",
+    "Video upload"
+  ]
+}
