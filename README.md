@@ -1,6 +1,6 @@
 # Desconecta
 
-Minijuego educativo en primera persona sobre el cuidado del agua, la energía y el gas. Recorre cuatro espacios del hogar y resuelve siete situaciones. Basado en el [GDD EcoHogar](https://miro.com/app/board/uXjVHnfIILI=/).
+Desconecta es un videojuego educativo en 3D desarrollado en Unity dirigido a niños de 8 a 12 años, cuyo propósito es promover el uso responsable del agua, la energía eléctrica y el gas dentro del hogar, la experiencia se desarrolla en una vivienda que el jugador debe explorar para identificar situaciones cotidianas de desperdicio y reconocer las acciones adecuadas para solucionarlas.  Basado en el [GDD EcoHogar](https://miro.com/app/board/uXjVHnfIILI=/).
 
 ![Inicio de Desconecta](Documentation/Screenshots/Captura-Inicio.png)
 
