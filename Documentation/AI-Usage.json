@@ -14,5 +14,28 @@
   "manual_pixel_painting": false,
   "performed_by": "Codex assistant via tools; not attributed to a student",
   "code_assistance": "Codex (GPT-6 family; exact revision unavailable)",
-  "audio": "Deterministic Python synthesis; no sampled recordings"
+  "audio": "Deterministic Python synthesis; no sampled recordings",
+  "coin_update": {
+    "date": "2026-11-16",
+    "branch": "KarenZarateC/actualizacion-monedas",
+    "assistance": "Codex assisted with procedural 3D modeling in Unity, gameplay, UI, audio integration, verification and documentation.",
+    "visual_reference": "User supplied Coin_MK8_artwork.webp; used as visual reference only, not included as texture or redistributed.",
+    "model": "Procedural 64-segment beveled mesh, gold materials and raised mark on both faces; no image generation used for this update.",
+    "audio_sources": [
+      {
+        "path": "Assets/Audio/Camilo/Coin.mp3",
+        "origin": "User supplied audio in Camilo folder; existing MP3 bytes retained with corrected extension.",
+        "sha256": "5d1857c233a274e02d4eb73973eeabdeeedf5884b186926714102da302207804"
+      },
+      {
+        "path": "Assets/Audio/Camilo/Musica de fondo.mp3",
+        "origin": "User supplied audio in Camilo folder; existing MP3 bytes retained with corrected extension.",
+        "sha256": "bae0a119bc60f4523dc37c3302ac85b830b1473036bd909ade766d5f648ed99f"
+      }
+    ],
+    "validation": {
+      "edit_mode_passed": 11,
+      "runtime_checks_passed": 28
+    }
+  }
 }

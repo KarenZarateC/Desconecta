@@ -76,7 +76,7 @@ public static class StageThreeVerification
                 var eye=new Vector3(origin+x*step,1.65f,origin+z*step);
                 var direction=target.transform.position+Vector3.up*1.3f-eye;
                 if(direction.magnitude>3.6f) continue;
-                if(Physics.Raycast(eye,direction.normalized,out var hit,3.8f,~0,QueryTriggerInteraction.Collide)&&hit.collider.GetComponentInParent<HouseholdSituation>()==target) {accessible=true;viewpoint=eye;}
+                if(Physics.Raycast(eye,direction.normalized,out var hit,3.8f,Physics.DefaultRaycastLayers,QueryTriggerInteraction.Collide)&&hit.collider.GetComponentInParent<HouseholdSituation>()==target) {accessible=true;viewpoint=eye;}
             }
             results.Add(new {id=target.situationId,accessible,viewpoint=viewpoint.ToString()});
             if(!accessible) Debug.LogError("TARGET_UNREACHABLE: "+target.situationId);

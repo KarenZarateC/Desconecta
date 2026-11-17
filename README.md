@@ -19,6 +19,16 @@ Minijuego educativo en primera persona sobre el cuidado del agua, la energía y 
 
 La escena habilitada para compilar es Desconecta_Stage3. `Nivel1_Recovered.unity` conserva la casa recuperada del historial. Las escenas anteriores no son el punto de entrada de esta entrega.
 
+## Actualización de monedas
+
+La rama `KarenZarateC/actualizacion-monedas` añade **24 monedas 3D** repartidas por las zonas transitables de la casa, giro continuo y animación de recogida con destellos. Acércate caminando para recogerlas: cada una suma **10 puntos**, una sola vez por partida.
+
+El HUD muestra **MONEDAS recogidas / 24**. Al ganar o terminar el tiempo, la pantalla final muestra la cantidad recogida, el porcentaje de recolección, la bonificación por monedas y el puntaje total. Las monedas son opcionales: el objetivo principal sigue siendo resolver las siete situaciones del hogar. El máximo sin errores es **940 puntos**: 700 de situaciones y 240 de monedas.
+
+La música de fondo y el efecto de moneda usan los archivos de `Assets/Audio/Camilo`, importados como MP3. Se conservan el silencio, los controles de volumen independientes y el modo de movimiento reducido. Al reiniciar se restauran las 24 monedas y su contador.
+
+Consulta el [informe para el equipo](Documentation/Actualizacion-Monedas.md) y las [capturas](Documentation/Screenshots/Coin-Playing.png). En Unity, **Desconecta > Coins > Apply Coin Update** reconstruye el contenido de monedas; **Run EditMode Tests** ejecuta las pruebas y **Run Runtime Verification** verifica la integración en Play Mode.
+
 ## Reglas y controles
 
 Hay diez minutos, con modo opcional sin límite. Cada acierto suma 100 puntos y cada error resta 25 sin bajar de cero. Se puede reintentar; cada situación puntúa una sola vez. El reloj se detiene al leer una decisión y en la pausa.
@@ -47,15 +57,17 @@ El informe describe límites: no hay lector de pantalla, locución, mando ni rem
 - `Assets/Code/Editor`: constructor de escena, comprobaciones y conexión local MCP.
 - `Assets/Level/Scenes`: escena jugable y copia recuperada de la casa.
 - `Assets/Art/StageThree`: materiales y la ilustración generada.
-- `Assets/Audio/Generated`: música y efectos sintetizados originales.
-- `Assets/Tests/Editor`: seis pruebas NUnit de las reglas.
+- `Assets/Audio/Generated`: efectos y ambiente sintetizados originales.
+- `Assets/Audio/Camilo`: música de fondo y sonido de moneda suministrados para esta actualización.
+- `Assets/Art/Coins`: malla, materiales y dos clips de animación de la moneda.
+- `Assets/Tests/Editor`: once pruebas NUnit de situaciones y monedas.
 - `Documentation`: informes PDF, declaración de IA, validación y capturas.
 - `Tools/create_audio.py`: síntesis reproducible de los ocho WAV.
 - `Packages/com.coplaydev.unity-mcp`: MCP for Unity 10.3.0, con licencia MIT.
 
 ## Verificación y compilación
 
-En **Window > General > Test Runner**, ejecuta EditMode, ensamblado `Desconecta.Tests`. La entrega registra seis pruebas aprobadas. En Play Mode, `StageThreeVerification.VerifyRuntime()` verifica diez condiciones y el acceso físico a los siete objetivos; deja la sesión en el menú inicial al terminar.
+En **Window > General > Test Runner**, ejecuta EditMode, ensamblado `Desconecta.Tests`. La actualización registra once pruebas aprobadas; el resultado está en `Documentation/CoinTests.xml`. En Play Mode, `StageThreeVerification.VerifyRuntime()` verifica diez condiciones y el acceso físico a los siete objetivos; deja la sesión en el menú inicial al terminar.
 
 Para generar Windows x64: abre **File > Build Profiles**, selecciona Windows y usa la única escena habilitada. Backend Mono, ventana de 1600 x 1000. No se necesita servidor MCP para jugar. La copia compilada se entrega por separado del código fuente.
 
@@ -67,7 +79,7 @@ Se verificó una conexión MCP HTTP exclusivamente local en `http://127.0.0.1:80
 
 ## Procedencia, IA y equipo
 
-La estructura de la vivienda y los muebles proceden del proyecto existente. La ilustración se generó con la herramienta de imágenes de OpenAI integrada en Codex; el prompt original en inglés y el posprocesamiento están en `Documentation/AI-Usage.json`. La versión exacta del modelo de imagen no fue expuesta. El audio se sintetizó mediante Python, sin grabaciones ni canciones descargadas. `Switch.wav` queda como recurso disponible; los otros siete clips se integraron en la escena.
+La estructura de la vivienda y los muebles proceden del proyecto existente. La ilustración se generó con la herramienta de imágenes de OpenAI integrada en Codex; el prompt original en inglés y el posprocesamiento están en `Documentation/AI-Usage.json`. La versión exacta del modelo de imagen no fue expuesta. El audio de `Assets/Audio/Generated` se sintetizó mediante Python, sin grabaciones ni canciones descargadas. La actualización de monedas incorpora además los dos audios de Camilo suministrados por la usuaria; el equipo debe conservar su atribución y confirmar su licencia antes de distribuir el juego públicamente. `Switch.wav` queda como recurso disponible; los otros siete clips se integraron en la escena.
 
 Codex asistió en recuperación, programación, automatización, pruebas y documentos. Los commits nuevos declaran esa asistencia. El historial anterior registra aportes bajo el nombre Karen Zarate; **los nombres completos, aportes reales, roles del equipo y responsable de entrega requieren confirmación de sus integrantes**. No se crearon identidades ni commits ficticios para aparentar colaboración.
 

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="11" result="Passed" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0,3953711">
+  <test-suite type="TestSuite" id="1000" name="Desconecta" fullname="Desconecta" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.395371" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1015" name="Desconecta.Tests.dll" fullname="C:/Users/SETUP-FEC/Documents/GitHub/Desconecta/Library/ScriptAssemblies/Desconecta.Tests.dll" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.293533" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="9448" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1002" name="CoinCollectionProgressTests" fullname="CoinCollectionProgressTests" classname="CoinCollectionProgressTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.134566" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1005" name="CompletingAllCoinsDoesNotRequireMissionProgress" fullname="CoinCollectionProgressTests.CompletingAllCoinsDoesNotRequireMissionProgress" methodname="CompletingAllCoinsDoesNotRequireMissionProgress" classname="CoinCollectionProgressTests" runstate="Runnable" seed="1474699905" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.020599" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="EachCoinAwardsTenPointsOnce" fullname="CoinCollectionProgressTests.EachCoinAwardsTenPointsOnce" methodname="EachCoinAwardsTenPointsOnce" classname="CoinCollectionProgressTests" runstate="Runnable" seed="1717413182" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000443" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1007" name="EmptyLevelDoesNotClaimCollectionComplete" fullname="CoinCollectionProgressTests.EmptyLevelDoesNotClaimCollectionComplete" methodname="EmptyLevelDoesNotClaimCollectionComplete" classname="CoinCollectionProgressTests" runstate="Runnable" seed="367179439" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000337" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1006" name="RestartRestoresAllRewards" fullname="CoinCollectionProgressTests.RestartRestoresAllRewards" methodname="RestartRestoresAllRewards" classname="CoinCollectionProgressTests" runstate="Runnable" seed="582895861" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000340" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="UnregisteredAndInvalidIdsCannotAwardPoints" fullname="CoinCollectionProgressTests.UnregisteredAndInvalidIdsCannotAwardPoints" methodname="UnregisteredAndInvalidIdsCannotAwardPoints" classname="CoinCollectionProgressTests" runstate="Runnable" seed="665843005" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000328" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1008" name="MissionProgressTests" fullname="MissionProgressTests" classname="MissionProgressTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.066224" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1014" name="InvalidIdCannotAdvanceProgress" fullname="MissionProgressTests.InvalidIdCannotAdvanceProgress" methodname="InvalidIdCannotAdvanceProgress" classname="MissionProgressTests" runstate="Runnable" seed="728455488" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000306" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="PausedAndUnlimitedModesPreserveRemainingTime" fullname="MissionProgressTests.PausedAndUnlimitedModesPreserveRemainingTime" methodname="PausedAndUnlimitedModesPreserveRemainingTime" classname="MissionProgressTests" runstate="Runnable" seed="1485277268" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.001200" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="PenaltiesDoNotMakeScoreNegative" fullname="MissionProgressTests.PenaltiesDoNotMakeScoreNegative" methodname="PenaltiesDoNotMakeScoreNegative" classname="MissionProgressTests" runstate="Runnable" seed="2102042950" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000340" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="ResolvingSameSituationDoesNotAwardTwice" fullname="MissionProgressTests.ResolvingSameSituationDoesNotAwardTwice" methodname="ResolvingSameSituationDoesNotAwardTwice" classname="MissionProgressTests" runstate="Runnable" seed="100340968" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000296" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1013" name="SeventhUniqueResolutionWinsAndLocksScore" fullname="MissionProgressTests.SeventhUniqueResolutionWinsAndLocksScore" methodname="SeventhUniqueResolutionWinsAndLocksScore" classname="MissionProgressTests" runstate="Runnable" seed="1364341156" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000576" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="TimerExpiresWithoutBecomingNegative" fullname="MissionProgressTests.TimerExpiresWithoutBecomingNegative" methodname="TimerExpiresWithoutBecomingNegative" classname="MissionProgressTests" runstate="Runnable" seed="1669156491" result="Passed" start-time="2026-11-17 04:45:36Z" end-time="2026-11-17 04:45:36Z" duration="0.000254" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[<b><color=#2EA3FF>MCP-FOR-UNITY</color></b>: [TestRunnerNoThrottle] Restored Interaction Mode after test run.
+Saving results to: C:/Users/SETUP-FEC/AppData/LocalLow/Desconecta Team/Desconecta\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
