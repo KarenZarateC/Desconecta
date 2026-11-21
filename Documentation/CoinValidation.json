@@ -1,0 +1,119 @@
+{
+    "unityVersion": "6000.3.17f1",
+    "status": "passed",
+    "checks": [
+        {
+            "name": "24 unique registered coins",
+            "passed": true
+        },
+        {
+            "name": "All 24 coins reachable from player spawn with capsule clearance",
+            "passed": true
+        },
+        {
+            "name": "Each coin has a model, spin and collect animation, trigger and kinematic body",
+            "passed": true
+        },
+        {
+            "name": "Camilo music loops and coin sound is assigned",
+            "passed": true
+        },
+        {
+            "name": "Pickup works at trigger edge without requiring player to cross coin center",
+            "passed": true
+        },
+        {
+            "name": "Spin changes orientation over time",
+            "passed": true
+        },
+        {
+            "name": "Pause freezes coin motion and timer",
+            "passed": true
+        },
+        {
+            "name": "Pause blocks collection",
+            "passed": true
+        },
+        {
+            "name": "Decision blocks collection",
+            "passed": true
+        },
+        {
+            "name": "Physical player trigger collects exactly one coin",
+            "passed": true
+        },
+        {
+            "name": "Duplicate pickup cannot add points",
+            "passed": true
+        },
+        {
+            "name": "Pickup has matching written and audio feedback",
+            "passed": true
+        },
+        {
+            "name": "Pickup animates upward and shrinks",
+            "passed": true
+        },
+        {
+            "name": "Collected visual disappears and trigger stays disabled",
+            "passed": true
+        },
+        {
+            "name": "HUD updates to 1 / 24 coins",
+            "passed": true
+        },
+        {
+            "name": "Restart restores all 24 coins, visuals and triggers",
+            "passed": true
+        },
+        {
+            "name": "Reduced motion stops spinning",
+            "passed": true
+        },
+        {
+            "name": "Reduced motion pickup uses immediate visual feedback",
+            "passed": true
+        },
+        {
+            "name": "Mute suppresses music and feedback",
+            "passed": true
+        },
+        {
+            "name": "Independent music and effects volume controls remain active",
+            "passed": true
+        },
+        {
+            "name": "Pickup works at the edge of the trigger without the player blocking its own ray",
+            "passed": true
+        },
+        {
+            "name": "A solid wall blocks coin collection",
+            "passed": true
+        },
+        {
+            "name": "Victory includes coin points and preserves seven household objectives",
+            "passed": true
+        },
+        {
+            "name": "Final results show 18 / 24, 75 percent and 180 bonus points",
+            "passed": true
+        },
+        {
+            "name": "Results block collection",
+            "passed": true
+        },
+        {
+            "name": "Collecting all coins does not end the educational objectives",
+            "passed": true
+        },
+        {
+            "name": "Timeout also shows partial collection statistics",
+            "passed": true
+        },
+        {
+            "name": "Final statistics fit their UI rect",
+            "passed": true
+        }
+    ],
+    "coins": 24
+}

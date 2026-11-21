@@ -56,7 +56,7 @@ namespace Desconecta
 
             Focused = null;
             // Raycast against the whole scene so walls and furniture occlude targets.
-            if (Physics.Raycast(viewCamera.transform.position, viewCamera.transform.forward, out var hit, interactionDistance, ~0, QueryTriggerInteraction.Collide))
+            if (Physics.Raycast(viewCamera.transform.position, viewCamera.transform.forward, out var hit, interactionDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
                 Focused = hit.collider.GetComponentInParent<HouseholdSituation>();
             if (Focused != null && Focused.IsResolved) Focused = null;
             bool interact = (mouse != null && mouse.leftButton.wasPressedThisFrame) || (keys != null && (GameInput.Pressed(keys.enterKey, KeyCode.Return) || GameInput.Pressed(keys.spaceKey, KeyCode.Space)));

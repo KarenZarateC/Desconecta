@@ -13,7 +13,7 @@ namespace Desconecta
         public Sprite illustration;
         private GameObject content;
         private RectTransform canvas;
-        private Text scoreText, timeText, objectiveText, focusText, feedbackText, captionText;
+        private Text scoreText, timeText, objectiveText, focusText, feedbackText, captionText, coinText;
         private bool optionsVisible;
         private Button firstButton;
         private readonly Color navy = new Color32(17, 35, 48, 255);
@@ -66,7 +66,7 @@ namespace Desconecta
         {
             var session = GameSession.Instance;
             Label(page, "Pequeñas acciones.\nUn hogar mejor.", 60, 100, 740, 150, 58, navy, true);
-            Label(page, "Explora la casa y resuelve 7 situaciones de agua, energía y gas. Tienes 10 minutos; también puedes elegir jugar sin límite.", 60, 280, 700, 160, Body, navy);
+            Label(page, "Explora la casa, sigue las monedas doradas y resuelve 7 situaciones de agua, energía y gas. Tienes 10 minutos o el modo sin límite.", 60, 280, 700, 160, Body, navy);
             Label(page, "MOVERSE  Flechas o WASD\nMIRAR  Mouse · o Q/E y R/F\nREVISAR  Clic, Enter o Espacio\nDECIDIR  1 / 2 · PAUSA  Esc · PISTA  H", 60, 465, 720, 175, Body, navy);
             ActionButton(page, "Comenzar recorrido", 60, 680, 710, 76, session.Begin, true);
             ActionButton(page, "Accesibilidad y sonido", 60, 772, 710, 60, () => { optionsVisible = true; RefreshScreen(); });
@@ -74,7 +74,7 @@ namespace Desconecta
             Place(imagePanel, 825, 100, 450, 450);
             if (illustration != null) { var img = imagePanel.GetComponent<Image>(); img.sprite = illustration; img.preserveAspect = true; img.color = Color.white; }
             Label(page, "AGUA · ENERGÍA · CUIDADO", 825, 575, 450, 65, 25, green, true);
-            Label(page, "+100 por acierto\n−25 por una elección incorrecta\nPuedes volver a intentarlo.\n\nCon el gas, pide ayuda a un adulto.", 825, 660, 450, 165, 26, navy);
+            Label(page, "+100 por acierto · +10 por moneda\n−25 por una elección incorrecta\nRecoge monedas al caminar.\nCon el gas, pide ayuda a un adulto.", 825, 660, 450, 165, 26, navy);
         }
 
         private void BuildDecision(RectTransform page)
@@ -113,7 +113,9 @@ namespace Desconecta
             var session = GameSession.Instance;
             bool won = session.Progress.Won;
             Label(page, won ? "¡Un hogar mejor!" : "Cada intento enseña", 60, 110, 1200, 110, 60, navy, true);
-            Label(page, session.Progress.Completed + " / 7 situaciones resueltas     ·     " + session.Progress.Score + " puntos", 60, 255, 1200, 75, 42, green, true);
+            Label(page, session.Progress.Completed + " / 7 situaciones resueltas     ·     " + session.TotalScore + " puntos", 60, 255, 1200, 75, 42, green, true);
+            float percent = session.Coins.Total == 0 ? 0 : 100f * session.Coins.Collected / session.Coins.Total;
+            Label(page, "MONEDAS  " + session.Coins.Collected + " / " + session.Coins.Total + "   ·   " + percent.ToString("0") + "% recolectado   ·   +" + session.Coins.BonusScore + " puntos", 60, 330, 1200, 42, 28, green, true);
             Label(page, won ? "Cerraste grifos, apagaste lo que no se utilizaba y elegiste pedir ayuda con el gas." : "El tiempo terminó. Puedes volver a empezar o activar el modo sin límite desde Accesibilidad.", 60, 370, 1200, 145, Body + 3, navy);
             Label(page, "Lleva lo aprendido a casa:\n• Cierra el agua cuando no la necesitas.\n• Apaga luces y aparatos que no están en uso.\n• Pide a un adulto que revise la estufa.", 60, 530, 1200, 170, Body, navy);
             ActionButton(page, "Jugar otra vez", 60, 750, 580, 70, session.Begin, true);
@@ -126,7 +128,9 @@ namespace Desconecta
             top.anchorMin = new Vector2(0,1); top.anchorMax = Vector2.one;
             top.pivot = new Vector2(.5f,1); top.sizeDelta = new Vector2(0,105); top.anchoredPosition = Vector2.zero;
             Label(top, "DESCONECTA", 32, 20, 390, 35, 30, cream, true);
-            scoreText = Label(top, "", 500, 20, 550, 64, Body, cream);
+            scoreText = Label(top, "", 310, 20, 450, 64, Body, cream);
+            coinText = Label(top, "", 780, 20, 320, 64, Body, gold, true);
+            coinText.gameObject.name = "CoinCounter";
             timeText = Label(top, "", 1120, 20, 440, 64, Body, gold);
             var list = Panel(root, "ObjectivePanel", new Color32(17,35,48,242));
             Place(list, 24, 132, 445, 375);
@@ -162,7 +166,8 @@ namespace Desconecta
                 if (next != null) EventSystem.current.SetSelectedGameObject(next.gameObject);
             }
             if (session == null || session.Screen != SessionScreen.Playing || scoreText == null) return;
-            scoreText.text = session.Progress.Completed + "/7 resueltas  ·  " + session.Progress.Score + " puntos";
+            scoreText.text = session.Progress.Completed + "/7  ·  " + session.TotalScore + " puntos";
+            coinText.text = "MONEDAS  " + session.Coins.Collected + " / " + session.Coins.Total;
             int seconds = Mathf.CeilToInt(session.Progress.RemainingSeconds);
             timeText.text = session.Progress.Unlimited ? "SIN LÍMITE" : "TIEMPO  " + (seconds/60).ToString("00") + ":" + (seconds%60).ToString("00");
             string list = "";

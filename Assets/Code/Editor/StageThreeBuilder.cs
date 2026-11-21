@@ -120,6 +120,7 @@ public static class StageThreeBuilder
         PlayerSettings.defaultScreenWidth=1600; PlayerSettings.defaultScreenHeight=1000;
         PlayerSettings.runInBackground=true;
         PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
+        CoinUpdateBuilder.ApplyToCurrentScene();
         AssetDatabase.SaveAssets();
         EditorSceneManager.SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene(),"Assets/Level/Scenes/Desconecta_Stage3.unity");
         Debug.Log("STAGE_THREE_BUILT: 7 situations; preserved original house; audio and accessibility integrated.");

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 namespace Desconecta
 {
@@ -18,6 +19,10 @@ namespace Desconecta
         public AudioClip incorrectClip;
         public AudioClip victoryClip;
         public AudioClip timeoutClip;
+        public CollectibleCoin[] coins = new CollectibleCoin[0];
+        public AudioClip coinClip;
+        public CoinCollectionProgress Coins { get; private set; }
+        public int TotalScore => Progress.Score + (Coins != null ? Coins.BonusScore : 0);
         public SessionScreen Screen { get; private set; } = SessionScreen.Home;
         public MissionProgress Progress { get; private set; }
         public HouseholdSituation Selected { get; private set; }
@@ -43,6 +48,7 @@ namespace Desconecta
             EffectsVolume = PlayerPrefs.GetFloat("Desconecta.Effects", .65f);
             Sensitivity = PlayerPrefs.GetFloat("Desconecta.Sensitivity", .7f);
             Progress = new MissionProgress(situations.Length) { Unlimited = UnlimitedTime };
+            Coins = new CoinCollectionProgress(coins.Where(coin => coin != null).Select(coin => coin.coinId));
             ApplyAudio();
         }
 
@@ -71,8 +77,10 @@ namespace Desconecta
         {
             Progress = new MissionProgress(situations.Length) { Unlimited = UnlimitedTime };
             foreach (var situation in situations) situation.ResetSituation();
+            Coins.Reset();
+            foreach (var coin in coins) if (coin != null) coin.ResetCoin();
             explorer.ResetPosition();
-            Feedback = "Recorre la casa. Mira un marcador y pulsa Enter, Espacio o clic.";
+            Feedback = "Sigue las monedas: recógelas al caminar (+10). Revisa los objetivos con Enter, Espacio o clic.";
             Caption = "[Música ambiental suave]";
             Selected = null;
             SetScreen(SessionScreen.Playing);
@@ -109,6 +117,15 @@ namespace Desconecta
         }
 
         public void Resume() { SetScreen(SessionScreen.Playing); }
+
+        public bool CollectCoin(CollectibleCoin coin)
+        {
+            if (Screen != SessionScreen.Playing || Progress.Finished || coin == null ||
+                !System.Array.Exists(coins, registered => registered == coin) || !Coins.TryCollect(coin.coinId)) return false;
+            Feedback = Coins.Complete ? "¡Todas las monedas! Continúa cuidando el hogar." : "+10 puntos · Moneda " + Coins.Collected + " de " + Coins.Total + ".";
+            Announce("[Sonido de moneda] " + Coins.Collected + " / " + Coins.Total + " monedas recolectadas.", coinClip);
+            return true;
+        }
         public void Pause() { if (Screen == SessionScreen.Playing) SetScreen(SessionScreen.Paused); }
         public void Home() { SetScreen(SessionScreen.Home); }
 
