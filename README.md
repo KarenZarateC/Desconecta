@@ -1,86 +1,85 @@
 # Desconecta
 
-Desconecta es un videojuego educativo en 3D desarrollado en Unity dirigido a niños de 8 a 12 años, cuyo propósito es promover el uso responsable del agua, la energía eléctrica y el gas dentro del hogar, la experiencia se desarrolla en una vivienda que el jugador debe explorar para identificar situaciones cotidianas de desperdicio y reconocer las acciones adecuadas para solucionarlas.  Basado en el [GDD EcoHogar](https://miro.com/app/board/uXjVHnfIILI=/).
+Desconecta is a 3D educational game made with Unity for children ages 8–12. Set in a family home, it encourages responsible use of water, electricity, and gas. Players explore the house, identify everyday waste, and choose practical ways to address it. The project is based on the [EcoHogar game design document](https://miro.com/app/board/uXjVHnfIILI=/).
 
-![Inicio de Desconecta](Documentation/Screenshots/Captura-Inicio.png)
+![Desconecta home screen](Documentation/Screenshots/Captura-Inicio.png)
 
-## Abrir el proyecto
+## Get Started
 
-1. Instala Unity **6000.3.17f1 LTS** con el módulo Windows Build Support (Mono).
-2. Clona este repositorio y descarga sus archivos grandes:
+**Requirements:** Unity **6000.3.17f1 LTS**. Install Windows Build Support (Mono) if you plan to create a Windows build. This repository uses Git LFS for large assets.
+
+1. Clone the repository and fetch its LFS assets:
 
    ```bash
    git lfs install
    git lfs pull
    ```
 
-3. Abre la carpeta en Unity Hub y espera a que termine la importación.
-4. Abre **Assets/Level/Scenes/Desconecta_Stage3.unity** y pulsa Play.
+2. Open the project folder from Unity Hub and wait for asset import to finish.
+3. Open `Assets/Level/Scenes/Desconecta_Stage3.unity` and press **Play**.
 
-La escena habilitada para compilar es Desconecta_Stage3. `Nivel1_Recovered.unity` conserva la casa recuperada del historial. Las escenas anteriores no son el punto de entrada de esta entrega.
+`Desconecta_Stage3` is the only scene enabled in Build Settings and the entry point for this project version. `Nivel1_Recovered.unity` preserves the recovered house scene; earlier scenes are not the current entry point.
 
-## Actualización de monedas
+## Gameplay
 
-La rama `KarenZarateC/actualizacion-monedas` añade **24 monedas 3D** repartidas por las zonas transitables de la casa, giro continuo y animación de recogida con destellos. Acércate caminando para recogerlas: cada una suma **10 puntos**, una sola vez por partida.
+Resolve seven household situations involving a kitchen faucet, bathroom faucet, living-room light, television, charger, lamp, and stove. Each correct answer awards **100 points**; an incorrect answer costs **25 points**, but the score cannot fall below zero. Players can retry, and each situation awards points only once. The ten-minute timer pauses on decision and pause screens; an optional unlimited-time setting is available.
 
-El HUD muestra **MONEDAS recogidas / 24**. Al ganar o terminar el tiempo, la pantalla final muestra la cantidad recogida, el porcentaje de recolección, la bonificación por monedas y el puntaje total. Las monedas son opcionales: el objetivo principal sigue siendo resolver las siete situaciones del hogar. El máximo sin errores es **940 puntos**: 700 de situaciones y 240 de monedas.
+Twenty-four optional 3D coins are distributed around the house. Walk into one to collect it for **10 points**. Coins spin while idle and play a collection animation; collecting all of them is not required to complete the mission. The final screen reports the collected count, percentage, coin bonus, and total score. With all seven situations solved without mistakes and all coins collected, the maximum score is **940**.
 
-La música de fondo y el efecto de moneda usan los archivos de `Assets/Audio/Camilo`, importados como MP3. Se conservan el silencio, los controles de volumen independientes y el modo de movimiento reducido. Al reiniciar se restauran las 24 monedas y su contador.
+The stove and charger situations teach players to ask an adult for help. Coins are restored when a new run begins.
 
-Consulta el [informe para el equipo](Documentation/Actualizacion-Monedas.md) y las [capturas](Documentation/Screenshots/Coin-Playing.png). En Unity, **Desconecta > Coins > Apply Coin Update** reconstruye el contenido de monedas; **Run EditMode Tests** ejecuta las pruebas y **Run Runtime Verification** verifica la integración en Play Mode.
+### Controls
 
-## Reglas y controles
-
-Hay diez minutos, con modo opcional sin límite. Cada acierto suma 100 puntos y cada error resta 25 sin bajar de cero. Se puede reintentar; cada situación puntúa una sola vez. El reloj se detiene al leer una decisión y en la pausa.
-
-| Acción | Control |
+| Action | Controls |
 |---|---|
-| Moverse | Flechas o WASD |
-| Mirar | Mouse; Q/E para girar y R/F para mirar arriba/abajo |
-| Revisar el objetivo señalado | Clic, Enter o Espacio |
-| Elegir respuesta | 1 o 2, o los botones de la pantalla |
-| Pausa / volver a explorar | Esc |
-| Pedir una pista | H |
-| Navegar por menús | Tab o flechas; Enter activa; flechas ajustan deslizadores |
+| Move | Arrow keys or WASD |
+| Look | Mouse; Q/E to turn and R/F to look up or down |
+| Inspect the focused target | Left mouse button, Enter, or Space |
+| Choose an answer | 1 or 2, or the on-screen buttons |
+| Pause / resume exploration | Esc |
+| Request a hint | H |
+| Navigate menus | Tab or arrow keys; Enter activates; arrow keys adjust sliders |
 
-Los siete objetivos son: grifo de cocina, grifo del baño, luz de la sala, televisor, cargador, lámpara y estufa. Con el cargador y la estufa se elige pedir ayuda a un adulto.
+## Accessibility and Audio
 
-## Accesibilidad y sonido
+The **A tu ritmo** menu provides large text, reduced motion, unlimited time, mute, separate music and effects volume, and mouse sensitivity settings. These preferences persist between sessions. Situations are identified with numbers and text, and sound effects have on-screen descriptions. Input supports Unity's Input System and the legacy input manager; keep **Active Input Handling** set to **Both** in Project Settings.
 
-El menú **A tu ritmo** incluye texto grande, movimiento reducido, tiempo ilimitado, silencio, volúmenes independientes y sensibilidad del mouse. Se guardan entre sesiones. Los estados usan números y palabras; los efectos sonoros tienen descripción escrita. Los controles aceptan tanto Input System como eventos heredados; mantener **Active Input Handling: Both**.
+Known limitations: there is no screen reader support, voice-over narration, controller support, or complete key remapping. WCAG 2.2 and Universal Design for Learning are used as references; the project does not claim full compliance certification. See the [accessibility report](Documentation/Reporte-Accesibilidad-Desconecta.pdf).
 
-El informe describe límites: no hay lector de pantalla, locución, mando ni remapeo completo. Se usan WCAG 2.2 y DUA como referencia, sin declarar certificación de conformidad integral.
+## Project Layout
 
-## Estructura
+| Location | Purpose |
+|---|---|
+| `Assets/Code/Scripts` | Gameplay, session state, input, and interface |
+| `Assets/Code/Editor` | Scene builders, verification tools, and optional local MCP connection |
+| `Assets/Level/Scenes` | Playable Stage 3 and recovered source house |
+| `Assets/Art/StageThree` | Stage materials and generated illustration |
+| `Assets/Art/Coins` | Procedural coin mesh, materials, and animation clips |
+| `Assets/Audio/Generated` | Original synthesized ambience and sound effects |
+| `Assets/Audio/Camilo` | User-supplied background music and coin sound for this update |
+| `Assets/Tests/Editor` | NUnit tests for mission and coin progress |
+| `Documentation` | Reports, AI-use record, validation results, and screenshots |
+| `Tools/create_audio.py` | Reproducible synthesis of the generated WAV files |
+| `Packages/com.coplaydev.unity-mcp` | Unity MCP package used by the optional editor workflow |
 
-- `Assets/Code/Scripts`: lógica de juego y UI, con identificadores y comentarios en inglés.
-- `Assets/Code/Editor`: constructor de escena, comprobaciones y conexión local MCP.
-- `Assets/Level/Scenes`: escena jugable y copia recuperada de la casa.
-- `Assets/Art/StageThree`: materiales y la ilustración generada.
-- `Assets/Audio/Generated`: efectos y ambiente sintetizados originales.
-- `Assets/Audio/Camilo`: música de fondo y sonido de moneda suministrados para esta actualización.
-- `Assets/Art/Coins`: malla, materiales y dos clips de animación de la moneda.
-- `Assets/Tests/Editor`: once pruebas NUnit de situaciones y monedas.
-- `Documentation`: informes PDF, declaración de IA, validación y capturas.
-- `Tools/create_audio.py`: síntesis reproducible de los ocho WAV.
-- `Packages/com.coplaydev.unity-mcp`: MCP for Unity 10.3.0, con licencia MIT.
+## Tests and Builds
 
-## Verificación y compilación
+In Unity, open **Window > General > Test Runner** and run the EditMode tests in the `Desconecta.Tests` assembly. The checked-in test report records **11 passing tests**: six for mission progress and five for coin collection. Results are in [`Documentation/CoinTests.xml`](Documentation/CoinTests.xml).
 
-En **Window > General > Test Runner**, ejecuta EditMode, ensamblado `Desconecta.Tests`. La actualización registra once pruebas aprobadas; el resultado está en `Documentation/CoinTests.xml`. En Play Mode, `StageThreeVerification.VerifyRuntime()` verifica diez condiciones y el acceso físico a los siete objetivos; deja la sesión en el menú inicial al terminar.
+The coin update also includes an editor integration check. Use **Desconecta > Coins > Run Runtime Verification** while in Play Mode; the check exercises collection, reset, pause, victory, and timeout behavior and returns the session to the home screen. Recorded results include **28 passing runtime checks** in [`Documentation/CoinValidation.json`](Documentation/CoinValidation.json). These are recorded project results, not a claim that the tests were run in the current Unity session.
 
-Para generar Windows x64: abre **File > Build Profiles**, selecciona Windows y usa la única escena habilitada. Backend Mono, ventana de 1600 x 1000. No se necesita servidor MCP para jugar. La copia compilada se entrega por separado del código fuente.
+To build for Windows x64, open **File > Build Profiles**, select Windows, and use the enabled scene. The documented setup uses the Mono backend and a 1600 × 1000 window. A running MCP server is not required to play. The packaged build is distributed separately from the source repository.
 
-**Desconecta > Build Stage Three** reconstruye la escena generada desde `Nivel1_Recovered.unity`; sobrescribe los ajustes manuales posteriores de Desconecta_Stage3. Guarda o confirma esos cambios en Git antes de reconstruir.
+**Desconecta > Build Stage Three** regenerates the playable scene from `Nivel1_Recovered.unity` and replaces later manual changes to `Desconecta_Stage3`. Commit or otherwise preserve scene edits before running the builder.
 
-## Desarrollo mediante MCP
+## Optional Local MCP Workflow
 
-Se verificó una conexión MCP HTTP exclusivamente local en `http://127.0.0.1:8080/mcp`, con el servidor oficial de [CoplayDev](https://github.com/CoplayDev/unity-mcp), revisión `81542a7e86292b5c4c21b1782c5af23b567f45ce`. El paquete del editor se incluye en el proyecto. Para otra sesión, inicia el servidor según su documentación y usa **Desconecta > Connect Local MCP**. El proyecto no inicia un servidor automáticamente ni exige una cuenta en la nube.
+The project includes the editor package for [MCP for Unity by CoplayDev](https://github.com/CoplayDev/unity-mcp). A local HTTP connection was verified at `http://127.0.0.1:8080/mcp` using server revision `81542a7e86292b5c4c21b1782c5af23b567f45ce`. To use MCP in another session, start the server following its documentation and select **Desconecta > Connect Local MCP**. The project does not start a server automatically and does not require a cloud account.
 
-## Procedencia, IA y equipo
+## Assets and AI Use
 
-La estructura de la vivienda y los muebles proceden del proyecto existente. La ilustración se generó con la herramienta de imágenes de OpenAI integrada en Codex; el prompt original en inglés y el posprocesamiento están en `Documentation/AI-Usage.json`. La versión exacta del modelo de imagen no fue expuesta. El audio de `Assets/Audio/Generated` se sintetizó mediante Python, sin grabaciones ni canciones descargadas. La actualización de monedas incorpora además los dos audios de Camilo suministrados por la usuaria; el equipo debe conservar su atribución y confirmar su licencia antes de distribuir el juego públicamente. `Switch.wav` queda como recurso disponible; los otros siete clips se integraron en la escena.
+The house structure and furniture come from the existing project. The menu illustration was generated with OpenAI's image-generation tool integrated into Codex; the original prompt and post-processing details are recorded in [`Documentation/AI-Usage.json`](Documentation/AI-Usage.json). The exact image-model version was not exposed. The generated audio in `Assets/Audio/Generated` was synthesized with Python and uses no downloaded songs or recorded samples.
 
-Codex asistió en recuperación, programación, automatización, pruebas y documentos. Los commits nuevos declaran esa asistencia. El historial anterior registra aportes bajo el nombre Karen Zarate; **los nombres completos, aportes reales, roles del equipo y responsable de entrega requieren confirmación de sus integrantes**. No se crearon identidades ni commits ficticios para aparentar colaboración.
+The coin update also uses two audio files supplied by the user. Preserve the appropriate attribution and confirm licensing before public distribution; the folder name alone does not establish authorship or usage rights. The coin model is procedural and does not use its visual reference as a texture. See the [coin update report](Documentation/Actualizacion-Monedas.md) and [gameplay screenshot](Documentation/Screenshots/Coin-Playing.png).
 
-Se excluyeron por petición del usuario la sesión de crítica, el video y su publicación. Los retos extra son opcionales. La revisión en Turnitin y la entrega en el campus no se realizaron desde este entorno.
+Codex assisted with recovery, implementation, automation, tests, and documentation. Team member names, individual contributions, roles, and delivery ownership should be confirmed by the team; this README does not infer them from commit metadata.

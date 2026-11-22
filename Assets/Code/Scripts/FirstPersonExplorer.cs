@@ -3,21 +3,33 @@ using UnityEngine.InputSystem;
 
 namespace Desconecta
 {
+    /// <summary>Controls first-person exploration, camera look, and line-of-sight interaction with household situations.</summary>
     [RequireComponent(typeof(CharacterController))]
     public sealed class FirstPersonExplorer : MonoBehaviour
     {
+        /// <summary>Camera used as the origin and direction for looking at interactive situations.</summary>
         public Camera viewCamera;
+        /// <summary>Movement speed applied while the session is in the playing state.</summary>
         public float speed = 4f;
+        /// <summary>Maximum distance at which the camera can detect a household situation.</summary>
         public float interactionDistance = 3.8f;
+        /// <summary>World position restored when a run starts or the explorer falls out of the level.</summary>
         public Vector3 spawnPosition = new Vector3(5.5f, .1f, .75f);
+        /// <summary>Initial horizontal camera orientation restored with the spawn position.</summary>
         public float spawnYaw;
+        /// <summary>Situation currently targeted by the camera and eligible for inspection.</summary>
         public HouseholdSituation Focused { get; private set; }
+        // Required controller used for collision-aware movement and grounding checks.
         private CharacterController controller;
+        // Vertical camera rotation constrained to avoid overturning the first-person view.
         private float pitch;
+        // Current vertical movement, including gravity and the grounded reset.
         private float verticalVelocity;
 
+        // Cache the required controller before movement begins.
         private void Awake() { controller = GetComponent<CharacterController>(); }
 
+        /// <summary>Restores the explorer position, orientation, camera pitch, and vertical motion for a new run.</summary>
         public void ResetPosition()
         {
             controller.enabled = false;
@@ -28,6 +40,7 @@ namespace Desconecta
             viewCamera.transform.localRotation = Quaternion.identity;
         }
 
+        // Reads movement and look input only during active play, then resolves the visible interaction target.
         private void Update()
         {
             var session = GameSession.Instance;

@@ -9,20 +9,29 @@ namespace Desconecta
     /// <summary>Builds a scalable interface with explicit keyboard focus and audio descriptions.</summary>
     public sealed class GameInterface : MonoBehaviour
     {
+        /// <summary>Font used by every dynamically generated text element.</summary>
         public Font font;
+        /// <summary>Optional home-screen illustration displayed beside the introductory instructions.</summary>
         public Sprite illustration;
+        // Root of the currently displayed screen; rebuilt when the session state changes.
         private GameObject content;
+        // Full-screen canvas hosting the generated interface.
         private RectTransform canvas;
+        // References to HUD labels updated every frame during active play.
         private Text scoreText, timeText, objectiveText, focusText, feedbackText, captionText, coinText;
+        // Tracks whether the accessibility options panel should replace the current menu.
         private bool optionsVisible;
+        // First generated button, used as the default keyboard focus target.
         private Button firstButton;
         private readonly Color navy = new Color32(17, 35, 48, 255);
         private readonly Color cream = new Color32(250, 247, 236, 255);
         private readonly Color green = new Color32(29, 86, 67, 255);
         private readonly Color gold = new Color32(255, 206, 92, 255);
 
+        /// <summary>Returns the body text size selected by the current large-text accessibility setting.</summary>
         private int Body => GameSession.Instance != null && GameSession.Instance.LargeText ? 34 : 28;
 
+        // Creates the overlay canvas and an event system when the scene does not already provide one.
         private void Awake()
         {
             var root = new GameObject("AccessibleInterface", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -37,6 +46,7 @@ namespace Desconecta
                 new GameObject("MenuEventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
         }
 
+        /// <summary>Rebuilds the visible screen from the current session state and restores its initial focus.</summary>
         public void RefreshScreen()
         {
             if (canvas == null || GameSession.Instance == null) return;
@@ -62,6 +72,7 @@ namespace Desconecta
             if (firstButton != null && EventSystem.current != null) EventSystem.current.SetSelectedGameObject(firstButton.gameObject);
         }
 
+        // Builds the introductory controls and explains the exploration and household objectives.
         private void BuildHome(RectTransform page)
         {
             var session = GameSession.Instance;
@@ -77,6 +88,7 @@ namespace Desconecta
             Label(page, "+100 por acierto · +10 por moneda\n−25 por una elección incorrecta\nRecoge monedas al caminar.\nCon el gas, pide ayuda a un adulto.", 825, 660, 450, 165, 26, navy);
         }
 
+        // Builds the question screen and routes answer buttons back to the active session.
         private void BuildDecision(RectTransform page)
         {
             var session = GameSession.Instance;
@@ -91,6 +103,7 @@ namespace Desconecta
             ActionButton(page, "Volver a explorar  ·  Esc", 60, 780, 1210, 62, session.Resume);
         }
 
+        // Builds accessibility, audio, sensitivity, and navigation controls without stopping the session model.
         private void BuildOptions(RectTransform page)
         {
             var session = GameSession.Instance;
@@ -108,6 +121,7 @@ namespace Desconecta
             ActionButton(page, "Volver al menú", 690, 745, 580, 70, () => { optionsVisible = false; session.Home(); });
         }
 
+        // Builds the final score, coin bonus, outcome message, and restart actions.
         private void BuildResults(RectTransform page)
         {
             var session = GameSession.Instance;
@@ -122,6 +136,7 @@ namespace Desconecta
             ActionButton(page, "Ir al menú", 690, 750, 580, 70, session.Home);
         }
 
+        // Builds the in-game HUD for score, objectives, time, feedback, captions, and focused interactions.
         private void BuildHud(RectTransform root)
         {
             var top = Panel(root, "StatusBar", navy);
@@ -154,6 +169,7 @@ namespace Desconecta
             focusText.gameObject.AddComponent<Outline>().effectColor = Color.black;
         }
 
+        // Moves keyboard focus and refreshes the active HUD without recreating the interface every frame.
         private void Update()
         {
             var session = GameSession.Instance;
@@ -179,6 +195,7 @@ namespace Desconecta
             captionText.text = Time.unscaledTime < session.CaptionUntil ? session.Caption : focus != null ? focus.soundDescription : "[Música ambiental suave] · Las alertas también aparecen como texto.";
         }
 
+        // Creates a non-interactive colored UI panel under the requested parent.
         private RectTransform Panel(Transform parent, string name, Color color)
         {
             var obj = new GameObject(name, typeof(RectTransform), typeof(Image));
@@ -187,12 +204,14 @@ namespace Desconecta
             return obj.GetComponent<RectTransform>();
         }
 
+        // Positions a generated UI element using a top-left anchored layout.
         private void Place(RectTransform rect, float x, float y, float width, float height)
         {
             rect.anchorMin = rect.anchorMax = new Vector2(0,1); rect.pivot = new Vector2(0,1);
             rect.anchoredPosition = new Vector2(x,-y); rect.sizeDelta = new Vector2(width,height);
         }
 
+        // Creates consistently styled text and places it within the generated interface.
         private Text Label(Transform parent, string value, float x, float y, float width, float height, int size, Color color, bool bold = false)
         {
             var obj = new GameObject("Text", typeof(RectTransform), typeof(Text)); obj.transform.SetParent(parent,false);
@@ -202,6 +221,7 @@ namespace Desconecta
             Place(text.rectTransform,x,y,width,height); return text;
         }
 
+        // Creates a keyboard- and pointer-accessible button with visible focus feedback.
         private Button ActionButton(RectTransform page, string title, float x, float y, float width, float height, Action action, bool primary = false)
         {
             var rect = Panel(page,"Button_" + title, primary ? green : navy); Place(rect,x,y,width,height);
@@ -215,11 +235,13 @@ namespace Desconecta
             return button;
         }
 
+        // Creates a boolean accessibility option that persists through the session callback.
         private void OptionButton(RectTransform page, string name, bool value, float x, float y, Action<bool> set)
         {
             ActionButton(page,name + ": " + (value ? "SÍ" : "NO"),x,y,580,74,() => { set(!value); RefreshScreen(); });
         }
 
+        // Creates an adjustable setting while keeping its percentage label synchronized with the slider.
         private void SliderRow(RectTransform page, string name, float value, float x, float y, Action<float> set)
         {
             var caption = Label(page,name + "  " + Mathf.RoundToInt(value*100) + "%",x,y,570,38,Body,navy,true);
